@@ -54,6 +54,7 @@ set(HEADER_FILES
 	msogl_functions.h
 	msqrcodereader.h
 	msmediaplayer.h
+	msmediarecorder.h
 	msqueue.h
 	msrtp.h
 	mssndcard.h

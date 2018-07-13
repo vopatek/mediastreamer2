@@ -97,6 +97,7 @@ set(SOURCE_FILES_C
 	mediastreamer2_framework_tester.c
 	mediastreamer2_neon_tester.c
 	mediastreamer2_player_tester.c
+	mediastreamer2_recorder_tester.c
 	mediastreamer2_sound_card_tester.c
 	mediastreamer2_tester.c
 	mediastreamer2_tester_private.c
@@ -191,4 +192,3 @@ else()
 	endif()
 
 endif()
-
