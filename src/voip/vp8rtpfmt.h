@@ -120,6 +120,7 @@ extern "C"{
 	typedef struct Vp8RtpFmtPackerCtx {
 		MSQueue *output_queue;
 		MSFactory *factory;
+        uint16_t _refCSeq;
 	} Vp8RtpFmtPackerCtx;
 
 
@@ -133,7 +134,7 @@ extern "C"{
 	int vp8rtpfmt_unpacker_get_frame(Vp8RtpFmtUnpackerCtx *ctx, MSQueue *out, Vp8RtpFmtFrameInfo *frame_info);
 	uint32_t vp8rtpfmt_unpacker_calc_extended_cseq(Vp8RtpFmtUnpackerCtx *ctx, uint16_t cseq);
 	void vp8rtpfmt_send_rpsi(Vp8RtpFmtUnpackerCtx *ctx, uint16_t pictureid);
-
+    
 #ifdef __cplusplus
 }
 #endif

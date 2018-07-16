@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <limits.h>
 
-/*#define VP8RTPFMT_DEBUG*/
+//#define VP8RTPFMT_DEBUG
 
 #if (defined(__GNUC__) && __GNUC__) || defined(__SUNPRO_C)
 #define DECLARE_ALIGNED(n,typ,val)  typ val __attribute__ ((aligned (n)))
@@ -1007,6 +1007,7 @@ static void packer_process_frame_part(void *p, void *c) {
 		memset(pdm->b_wptr, 0, pdsize);
 		mblk_set_timestamp_info(pdm, mblk_get_timestamp_info(packet->m));
 		mblk_set_marker_info(pdm, FALSE);
+        mblk_set_cseq(pdm, ctx->_refCSeq++);
 		/* Fill the mandatory octet of the payload descriptor. */
 		if (packet->pd->extended_control_bits_present == TRUE) *pdm->b_wptr |= (1 << 7);
 		if (packet->pd->non_reference_frame == TRUE) *pdm->b_wptr |= (1 << 5);
@@ -1069,6 +1070,7 @@ static void packer_process_frame_part(void *p, void *c) {
 
 
 void vp8rtpfmt_packer_init(Vp8RtpFmtPackerCtx *ctx) {
+    ctx->_refCSeq = 0;
 }
 
 void vp8rtpfmt_packer_uninit(Vp8RtpFmtPackerCtx *ctx) {
