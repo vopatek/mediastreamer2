@@ -74,7 +74,7 @@ static void record_file(const char *filepath, RecorderTestFlags flags) {
 
 	BC_ASSERT_EQUAL(ms_media_recorder_get_state(file_recorder), MSRecorderClosed, int, "%d");
 
-	succeed = ms_media_recorder_open(file_recorder, filepath);
+	succeed = ms_media_recorder_open(file_recorder, filepath, 0);
 	if(flags & RECORDER_TEST_UNSUPPORTED_FORMAT) {
 		BC_ASSERT_FALSE(succeed);
 		BC_ASSERT_EQUAL(ms_media_recorder_get_state(file_recorder), MSRecorderClosed, int, "%d");
@@ -92,7 +92,7 @@ static void record_file(const char *filepath, RecorderTestFlags flags) {
 	BC_ASSERT_EQUAL(ms_media_recorder_get_state(file_recorder), MSRecorderRunning, int, "%d");
 
     sleep(5);
-    
+
 	ms_media_recorder_close(file_recorder);
 	BC_ASSERT_EQUAL(ms_media_recorder_get_state(file_recorder), MSRecorderClosed, int, "%d");
     //ms_media_recorder_remove_file(file_recorder, filepath);
